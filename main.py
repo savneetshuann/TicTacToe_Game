@@ -1,11 +1,11 @@
 # Tic Tac Toe game
-import numpy as np
-import random
-import tkinter as tk
+import numpy as np                #using numpy library
+import random                   
+import tkinter as tk              #using tkinter library for GUI
 from tkinter import *
 import sqlite3
-from tkinter import ttk
-import matplotlib.pyplot as plt
+from tkinter import ttk           #using tkinter library for  tkinter tree table
+import matplotlib.pyplot as plt   #using matplotlib for plotting of graph
 from functools import partial
 from tkinter import messagebox
 from copy import deepcopy
