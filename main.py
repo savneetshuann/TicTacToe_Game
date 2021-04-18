@@ -423,7 +423,7 @@ def run():
                    width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu4 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
