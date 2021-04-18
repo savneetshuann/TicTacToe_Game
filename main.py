@@ -51,7 +51,7 @@ def get_value(i, j, gb, l1, l2):
         gb.destroy()
         print(username1)  # testing value
         print(username2)
-        box = messagebox.showinfo("Winner", "Player 1 won the match")
+        messagebox.showinfo("Winner", "Player 1 won the match")
 
         conn = sqlite3.connect('player_info.db')
         c = conn.cursor()
@@ -84,7 +84,7 @@ def get_value(i, j, gb, l1, l2):
 
     elif winner(board, "O"):
         gb.destroy()
-        box = messagebox.showinfo("Winner", "Player 2 won the match")
+        messagebox.showinfo("Winner", "Player 2 won the match")
         conn = sqlite3.connect('player_info.db')
         c2 = conn.cursor()
         c2.execute("SELECT * FROM players WHERE user_name =? ", (username2,))
@@ -96,9 +96,9 @@ def get_value(i, j, gb, l1, l2):
         else:
             print("in update")
             c2.execute("""UPDATE players SET no_of_wins = no_of_wins + 1  WHERE user_name = 
-                       ?""", username2)
+                       ?""", (username2,))
             c2.execute("""UPDATE players SET points = points + 10  WHERE user_name = 
-                       ?""", username2)
+                       ?""", (username2,))
         c2.execute("SELECT * FROM players WHERE user_name =? ", (username1,))
         count = int(len(c2.fetchall()))
         print(count)
@@ -114,7 +114,7 @@ def get_value(i, j, gb, l1, l2):
 
     elif isfull():
         gb.destroy()
-        box = messagebox.showinfo("Tie Game", "Tie Game")
+        messagebox.showinfo("Tie Game", "Tie Game")
 
 
 # Check the board is full or not
@@ -199,7 +199,7 @@ def get_value_pc(i, j, gb, l1, l2):
     if winner(board, "X"):
         gb.destroy()
         x = False
-        box = messagebox.showinfo("Winner", "Player won the match")
+        messagebox.showinfo("Winner", "Player won the match")
         conn = sqlite3.connect('player_info.db')
         c = conn.cursor()
         c.execute("SELECT * FROM players WHERE user_name =? ", (user_name,))
@@ -221,12 +221,12 @@ def get_value_pc(i, j, gb, l1, l2):
     elif winner(board, "O"):
         gb.destroy()
         x = False
-        box = messagebox.showinfo("Winner", "Computer won the match")
+        messagebox.showinfo("Winner", "Computer won the match")
 
     elif isfull():
         gb.destroy()
         x = False
-        box = messagebox.showinfo("Tie Game", "Tie Game")
+        messagebox.showinfo("Tie Game", "Tie Game")
     if x:
         if sign % 2 != 0:
             move = machine()
@@ -350,7 +350,7 @@ def top_play():
     cur.execute(
         'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
         'PRANK <=3')
-    ## the data
+    # the data
     data = []
     xTickMarks = []
 
@@ -359,11 +359,11 @@ def top_play():
         xTickMarks.append(str(row[0]))
     con.commit()
     con.close()
-    ## necessary variables
+    # necessary variables
     ind = np.arange(len(data))  # the x locations for the groups
     width = 0.35  # the width of the bars
 
-    ## the bars
+    # the bars
     rects1 = ax.bar(ind, data, width,
                     color='black',
                     error_kw=dict(elinewidth=2, ecolor='red'))
@@ -372,17 +372,15 @@ def top_play():
     ax.set_xlim(-width, len(ind) + width)
     ax.set_ylim(0, 45)
 
-    ax.set_ylabel('POINTS')
-    ax.set_xlabel('NAMES')
-    ax.set_title('TOP RATED PLAYERS (RANK WISE )')
+    ax.set_ylabel('POINTS')  # Y axis
+    ax.set_xlabel('NAMES')  # X axis
+    ax.set_title('TOP RATED PLAYERS (RANK WISE )')  # Title of bar graph
 
     ax.set_xticks(ind + width)
     xtickNames = ax.set_xticklabels(xTickMarks)
     plt.setp(xtickNames, rotation=45, fontsize=10)
 
     plt.show()
-
-
 
 
 def scoreboard():
@@ -419,27 +417,17 @@ def scoreboard():
     root.mainloop()
 
 
-# creating the ui for the game
+# creating the GUI for the game
 def run():
     menu = Tk()
     menu.geometry("400x400")
     menu.title("Tic Tac Toe")
-
-    #single = partial(open_single, menu)
-    # op=partial(open_single,menu)
-
-    # submit_btn = Button(top, "PLAY")
-    # submit_btn.grid(row=2, column=0, pady=10, padx=10)
 
     head = Label(menu, text="Welcome to tic-tac-toe",
                  activeforeground='white',
                  activebackground="black", bg="white",
                  fg="black", width=500, font='Modern', bd=5)
 
-    # menu1 = Button(menu, text="Single Player", command=wpc,
-    #                activeforeground='white',
-    #                activebackground="grey", bg="blue",
-    #                fg="white", width=500, font='Gabriola', bd=5)
     menu1 = Button(menu, text="Single Player", command=open_single, activeforeground='white',
                    activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
@@ -467,7 +455,6 @@ def run():
     menu4.pack(side='top')
     menu5.pack(side='top')
     menu.mainloop()
-
 
 # table creation
 connection()
