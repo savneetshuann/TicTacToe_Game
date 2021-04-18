@@ -341,23 +341,11 @@ def open_multiple(menu):
     top.mainloop()
 
 
-def s_graph():
-    dat = sqlite3.connect('player_info.db')
-    # query = dat.execute("SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE PRANK <=3")
-    g = dat.cursor()
-    g.execute(
-        'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
-        'PRANK <=3')
-    rdata = g.fetchall()
-    plt.figure(1)
-    plt.bar([x['PRANK'] for x in rdata], [y['points'] for y in rdata])
-    plt.xlabel('Names')
-    plt.ylabel('Points)')
-    plt.show()
-    plt.close()
+def top_play():
 
 
-def score():
+
+def scoreboard():
     def View():  # Method to View the data into the Scoreboard Table
         con1 = sqlite3.connect('player_info.db')
         cur1 = con1.cursor()
@@ -420,18 +408,24 @@ def run():
                    activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
 
-    menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
+    menu3 = Button(menu, text="Scoreboard", command=scoreboard, activeforeground='white',
                    activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
 
-    menu4 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
+    menu4 = Button(menu, text="Top Players", command=top_play, activeforeground='white',
                    activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
+
+    menu5 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
+                   activebackground="grey", bg="blue", fg="red",
+                   width=500, font='Gabriola', bd=5)
+
     head.pack(side='top')
     menu1.pack(side='top')
     menu2.pack(side='top')
     menu3.pack(side='top')
     menu4.pack(side='top')
+    menu5.pack(side='top')
     menu.mainloop()
 
 
