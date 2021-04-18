@@ -370,7 +370,7 @@ def top_play():
 
     # axes and labels
     ax.set_xlim(-width, len(ind) + width)
-    ax.set_ylim(0, 45)
+    ax.set_ylim(0, 100)
 
     ax.set_ylabel('POINTS')  # Y axis
     ax.set_xlabel('NAMES')  # X axis
