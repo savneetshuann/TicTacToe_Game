@@ -251,6 +251,60 @@ def gameboard_pc(game_board, l1, l2):
             button[i][j] = Button(game_board, bd=5, command=get_t, height=4, width=8)
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
+    
+# Initialize the game board to play with system
+def with_machine(game_board, username):
+    global user_name
+    user_name = username.get()
+    game_board.destroy()
+    game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    l1 = Button(game_board, text="Player : X", width=10)
+    l1.grid(row=1, column=1)
+    l2 = Button(game_board, text="Computer : O",
+                width=10, state=DISABLED)
+
+    l2.grid(row=2, column=1)
+    gameboard_pc(game_board, l1, l2)
+
+
+# Initialize the game board to play with another player
+def with_player(game_board, user_name1, user_name2):
+    global username1
+    global username2
+    username1 = user_name1.get()
+    username2 = user_name2.get()
+    print(username1)
+    print(username2)
+    # second click
+    print(board)
+    # empty values of board
+
+    game_board.destroy()
+    game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    l1 = Button(game_board, text="Player 1 : X", width=10)
+
+    l1.grid(row=1, column=1)
+    l2 = Button(game_board, text="Player 2 : O",
+                width=10, state=DISABLED)
+
+    l2.grid(row=2, column=1)
+    gameboard_players(game_board, l1, l2)
+
+    # clear text box
+def open_single(game_board):
+    game_board.destroy()
+    game_board = Tk()
+    wpc = partial(with_machine, game_board)
+    user_name_label = Label(game_board, text="Enter your username: ")
+    user_name_label.grid(row=0, column=0)
+    user_name = Entry(game_board, width=30)
+    user_name.grid(row=1, column=0, padx=20)
+    submit_btn = Button(game_board, text="Play", command=lambda: wpc(user_name), activeforeground='white',
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola')
+    submit_btn.grid(row=2, column=0, pady=10, padx=10)
+    game_board.mainloop()    
 
 # db connections
 def connection():
