@@ -1,6 +1,5 @@
 # Tic Tac Toe game
 
-
 import random
 import tkinter as tk
 from tkinter import *
@@ -345,7 +344,6 @@ def open_multiple(menu):
 def s_graph():
     dat = sqlite3.connect('player_info.db')
     # query = dat.execute("SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE PRANK <=3")
-
     g = dat.cursor()
     g.execute(
         'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
@@ -415,19 +413,19 @@ def run():
     #                activebackground="grey", bg="blue",
     #                fg="white", width=500, font='Gabriola', bd=5)
     menu1 = Button(menu, text="Single Player", command=open_single, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="white",
+                   activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
 
     menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
-                   activebackground="grey", bg="blue", fg="white",
+                   activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="white",
+                   activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
 
     menu4 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="white",
+                   activebackground="grey", bg="blue", fg="red",
                    width=500, font='Gabriola', bd=5)
     head.pack(side='top')
     menu1.pack(side='top')
