@@ -322,7 +322,7 @@ def connection():
     conn.commit()
     conn.close()
 
-#
+#menu method for multi player plays
 def open_multiple(menu):
     top = Tk()
     user_name_label1 = Label(top, text="Enter username for Player1: ")
@@ -340,7 +340,7 @@ def open_multiple(menu):
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
-
+#top ranked players bar graph
 def top_play():
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -382,7 +382,7 @@ def top_play():
 
     plt.show()
 
-
+#method for scoreboard
 def scoreboard():
     def View():  # Method to View the data into the Scoreboard Table
         con1 = sqlite3.connect('player_info.db')
