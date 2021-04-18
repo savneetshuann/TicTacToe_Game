@@ -308,6 +308,8 @@ def open_single(game_board):
     submit_btn.grid(row=2, column=0, pady=10, padx=10)
     game_board.mainloop()    
 
+
+
 # db connections
 def connection():
     conn = sqlite3.connect('player_info.db')
@@ -321,7 +323,7 @@ def connection():
     conn.commit()
     conn.close()
 
-def open_multiple():
+def open_multiple(menu):
     top = Tk()
     user_name_label1 = Label(top, text="Enter username for Player1: ")
     user_name_label1.grid(row=0, column=0)
@@ -412,9 +414,9 @@ def run():
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
-    menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="white",
-                   width=500, font='Gabriola', bd=5)
+    menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
+                  activebackground="grey", bg="blue", fg="white",
+                  width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
                    activebackground="grey", bg="blue", fg="red",
