@@ -148,6 +148,109 @@ def gameboard_players(game_board, l1, l2):
                 game_board, bd=5, command=get_t, height=4, width=8)
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
+def machine():
+    possiblemove = []
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == ' ':
+                possiblemove.append([i, j])
+    move = []
+    if possiblemove == []:
+        return
+    else:
+        for let in ['O', 'X']:
+            for i in possiblemove:
+                boardcopy = deepcopy(board)
+                boardcopy[i[0]][i[1]] = let
+                if winner(boardcopy, let):
+                    return i
+        corner = []
+        for i in possiblemove:
+            if i in [[0, 0], [0, 2], [2, 0], [2, 2]]:
+                corner.append(i)
+        if len(corner) > 0:
+            move = random.randint(0, len(corner) - 1)
+            return corner[move]
+        edge = []
+        for i in possiblemove:
+            if i in [[0, 1], [1, 0], [1, 2], [2, 1]]:
+                edge.append(i)
+        if len(edge) > 0:
+            move = random.randint(0, len(edge) - 1)
+            return edge[move]
+
+
+# Configure text on button while playing with system
+def get_value_pc(i, j, gb, l1, l2):
+    global sign
+    if board[i][j] == ' ':
+        if sign % 2 == 0:
+            l1.config(state=DISABLED)
+            l2.config(state=ACTIVE)
+            board[i][j] = "X"
+        else:
+            button[i][j].config(state=ACTIVE)
+            l2.config(state=DISABLED)
+            l1.config(state=ACTIVE)
+            board[i][j] = "O"
+        sign += 1
+        button[i][j].config(text=board[i][j])
+    x = True
+    if winner(board, "X"):
+        gb.destroy()
+        x = False
+        box = messagebox.showinfo("Winner", "Player won the match")
+        conn = sqlite3.connect('player_info.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM players WHERE user_name =? ", (user_name,))
+        count = int(len(c.fetchall()))
+        print(count)
+        if count == 0:
+            print("in insert")
+            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?, 1,0,10)", (user_name,))
+        else:
+            print("in update")
+            c.execute("""UPDATE players SET no_of_wins = no_of_wins + 1  WHERE user_name = 
+                      ?""", (user_name,))
+            c.execute("""UPDATE players SET points = points + 10  WHERE user_name = 
+                      ?""", (user_name,))
+
+        conn.commit()
+        conn.close()
+
+    elif winner(board, "O"):
+        gb.destroy()
+        x = False
+        box = messagebox.showinfo("Winner", "Computer won the match")
+
+    elif isfull():
+        gb.destroy()
+        x = False
+        box = messagebox.showinfo("Tie Game", "Tie Game")
+    if x:
+        if sign % 2 != 0:
+            move = machine()
+            button[move[0]][move[1]].config(state=DISABLED)
+            get_value_pc(move[0], move[1], gb, l1, l2)
+
+
+# Create the GUI of game board for play along with system
+def gameboard_pc(game_board, l1, l2):
+    global button
+    button = []
+    for i in range(3):
+        m = 3 + i
+        button.append(i)
+        button[i] = []
+        for j in range(3):
+            if board[i][j] != ' ':
+                board[i][j] = ' '
+            n = j
+            button[i].append(j)
+            get_t = partial(get_value_pc, i, j, game_board, l1, l2)
+            button[i][j] = Button(game_board, bd=5, command=get_t, height=4, width=8)
+            button[i][j].grid(row=m, column=n)
+    game_board.mainloop()
 
 # db connections
 def connection():
