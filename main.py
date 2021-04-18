@@ -118,9 +118,6 @@ def get_value(i, j, gb, l1, l2):
         box = messagebox.showinfo("Tie Game", "Tie Game")
 
 
-
-
-
 # Check the board is full or not
 def isfull():
     flag = True
@@ -150,6 +147,8 @@ def gameboard_players(game_board, l1, l2):
                 game_board, bd=5, command=get_t, height=4, width=8)
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
+
+
 def machine():
     possiblemove = []
     for i in range(len(board)):
@@ -253,7 +252,8 @@ def gameboard_pc(game_board, l1, l2):
             button[i][j] = Button(game_board, bd=5, command=get_t, height=4, width=8)
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
-    
+
+
 # Initialize the game board to play with system
 def with_machine(game_board, username):
     global user_name
@@ -295,8 +295,9 @@ def with_player(game_board, user_name1, user_name2):
     gameboard_players(game_board, l1, l2)
 
     # clear text box
-def open_single(game_board):
-    game_board.destroy()
+
+
+def open_single():
     game_board = Tk()
     wpc = partial(with_machine, game_board)
     user_name_label = Label(game_board, text="Enter your username: ")
@@ -306,8 +307,7 @@ def open_single(game_board):
     submit_btn = Button(game_board, text="Play", command=lambda: wpc(user_name), activeforeground='white',
                         activebackground="grey", bg="blue", fg="white", font='Gabriola')
     submit_btn.grid(row=2, column=0, pady=10, padx=10)
-    game_board.mainloop()    
-
+    game_board.mainloop()
 
 
 # db connections
@@ -322,6 +322,7 @@ def connection():
     # commit changes
     conn.commit()
     conn.close()
+
 
 def open_multiple(menu):
     top = Tk()
@@ -340,6 +341,7 @@ def open_multiple(menu):
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
+
 def s_graph():
     dat = sqlite3.connect('player_info.db')
     # query = dat.execute("SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE PRANK <=3")
@@ -355,6 +357,7 @@ def s_graph():
     plt.ylabel('Points)')
     plt.show()
     plt.close()
+
 
 def score():
     def View():  # Method to View the data into the Scoreboard Table
@@ -389,13 +392,14 @@ def score():
     View()
     root.mainloop()
 
+
 # creating the ui for the game
 def run():
     menu = Tk()
     menu.geometry("400x400")
     menu.title("Tic Tac Toe")
 
-    single = partial(open_single, menu)
+    #single = partial(open_single, menu)
     # op=partial(open_single,menu)
 
     # submit_btn = Button(top, "PLAY")
@@ -410,13 +414,13 @@ def run():
     #                activeforeground='white',
     #                activebackground="grey", bg="blue",
     #                fg="white", width=500, font='Gabriola', bd=5)
-    menu1 = Button(menu, text="Single Player", command=single, activeforeground='white',
+    menu1 = Button(menu, text="Single Player", command=open_single, activeforeground='white',
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
-                  activebackground="grey", bg="blue", fg="white",
-                  width=500, font='Gabriola', bd=5)
+                   activebackground="grey", bg="blue", fg="white",
+                   width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
                    activebackground="grey", bg="blue", fg="red",
