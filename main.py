@@ -342,6 +342,23 @@ def open_multiple(menu):
 
 
 def top_play():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    con = sqlite3.connect('player_info.db')
+    cur = con.cursor()
+    cur.execute(
+        'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
+        'PRANK <=3')
+    ## the data
+    data = []
+    xTickMarks = []
+
+    for row in cur:
+        data.append(int(row[1]))
+        xTickMarks.append(str(row[0]))
+    con.commit()
+    con.close()
 
 
 
