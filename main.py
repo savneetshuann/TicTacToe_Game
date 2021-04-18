@@ -6,9 +6,9 @@ from tkinter import *
 import sqlite3
 from tkinter import ttk           #using tkinter library for  tkinter tree table
 import matplotlib.pyplot as plt   #using matplotlib for plotting of graph
-from functools import partial
-from tkinter import messagebox
-from copy import deepcopy
+from functools import partial     #importing partial function
+from tkinter import messagebox    
+from copy import deepcopy         #for recursive copying
 
 # sign variable to decide the turn of which player
 sign = 0
@@ -16,7 +16,7 @@ sign = 0
 # Creates an empty board
 global board
 
-board = [[" " for x in range(3)] for y in range(3)]
+board = [[" " for x in range(3)] for y in range(3)]                #empty board
 
 
 # Check l(O/X) won the match or not
@@ -147,7 +147,7 @@ def gameboard_players(game_board, l1, l2):
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
 
-
+#machine logic for tictactoe
 def machine():
     possiblemove = []
     for i in range(len(board)):
@@ -295,7 +295,7 @@ def with_player(game_board, user_name1, user_name2):
 
     # clear text box
 
-
+#gameboard for single player
 def open_single():
     game_board = Tk()
     wpc = partial(with_machine, game_board)
@@ -322,7 +322,7 @@ def connection():
     conn.commit()
     conn.close()
 
-
+#
 def open_multiple(menu):
     top = Tk()
     user_name_label1 = Label(top, text="Enter username for Player1: ")
