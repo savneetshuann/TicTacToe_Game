@@ -2,9 +2,11 @@
 
 
 import random
-import tkinter
+import tkinter as tk
 from tkinter import *
 import sqlite3
+from tkinter import ttk
+import matplotlib.pyplot as plt
 from functools import partial
 from tkinter import messagebox
 from copy import deepcopy
@@ -318,3 +320,119 @@ def connection():
     # commit changes
     conn.commit()
     conn.close()
+
+def open_multiple():
+    top = Tk()
+    user_name_label1 = Label(top, text="Enter username for Player1: ")
+    user_name_label1.grid(row=0, column=0)
+    user_name1 = Entry(top, width=30)  # user1 from here need to insert in databse
+    user_name1.grid(row=1, column=0, padx=20)
+
+    user_name_label2 = Label(top, text="Enter username for Player2: ")
+    user_name_label2.grid(row=2, column=0)
+    user_name2 = Entry(top, width=30)
+    user_name2.grid(row=3, column=0, padx=20)
+    wpl = partial(with_player, top)
+    submit_btn = Button(top, text="Play", command=lambda: wpl(user_name1, user_name2), activeforeground='white',
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola')
+    submit_btn.grid(row=4, column=0, pady=10, padx=10)
+    top.mainloop()
+
+def s_graph():
+    dat = sqlite3.connect('player_info.db')
+    # query = dat.execute("SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE PRANK <=3")
+
+    g = dat.cursor()
+    g.execute(
+        'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
+        'PRANK <=3')
+    rdata = g.fetchall()
+    plt.figure(1)
+    plt.bar([x['PRANK'] for x in rdata], [y['points'] for y in rdata])
+    plt.xlabel('Names')
+    plt.ylabel('Points)')
+    plt.show()
+    plt.close()
+
+def score():
+    def View():  # Method to View the data into the Scoreboard Table
+        con1 = sqlite3.connect('player_info.db')
+        cur1 = con1.cursor()
+        cur1.execute("Select user_name,no_of_wins,points from players")
+        rows = cur1.fetchall()
+
+        for row in rows:
+            print(row)
+
+            tree.insert("", tk.END, values=row)
+
+        con1.close()
+
+    root = tk.Tk()
+
+    tree = ttk.Treeview(root, column=("c1", "c2", "c3"), show='headings')
+
+    tree.column("#1", anchor=tk.CENTER)
+
+    tree.heading("#1", text="NAME")
+
+    tree.column("#2", anchor=tk.CENTER)
+
+    tree.heading("#2", text="WINS")
+
+    tree.column("#3", anchor=tk.CENTER)
+
+    tree.heading("#3", text="POINTS")
+    tree.pack()
+    View()
+    root.mainloop()
+
+# creating the ui for the game
+def run():
+    menu = Tk()
+    menu.geometry("400x400")
+    menu.title("Tic Tac Toe")
+
+    single = partial(open_single, menu)
+    # op=partial(open_single,menu)
+
+    # submit_btn = Button(top, "PLAY")
+    # submit_btn.grid(row=2, column=0, pady=10, padx=10)
+
+    head = Label(menu, text="Welcome to tic-tac-toe",
+                 activeforeground='white',
+                 activebackground="black", bg="white",
+                 fg="black", width=500, font='Modern', bd=5)
+
+    # menu1 = Button(menu, text="Single Player", command=wpc,
+    #                activeforeground='white',
+    #                activebackground="grey", bg="blue",
+    #                fg="white", width=500, font='Gabriola', bd=5)
+    menu1 = Button(menu, text="Single Player", command=single, activeforeground='white',
+                   activebackground="grey", bg="blue", fg="white",
+                   width=500, font='Gabriola', bd=5)
+
+    menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple, activeforeground='white',
+                   activebackground="grey", bg="blue", fg="white",
+                   width=500, font='Gabriola', bd=5)
+
+    menu3 = Button(menu, text="Scoreboard", command=score, activeforeground='white',
+                   activebackground="grey", bg="blue", fg="red",
+                   width=500, font='Gabriola', bd=5)
+
+    menu4 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
+                   activebackground="grey", bg="blue", fg="white",
+                   width=500, font='Gabriola', bd=5)
+    head.pack(side='top')
+    menu1.pack(side='top')
+    menu2.pack(side='top')
+    menu3.pack(side='top')
+    menu4.pack(side='top')
+    menu.mainloop()
+
+
+# table creation
+connection()
+
+# execute the program
+run()
