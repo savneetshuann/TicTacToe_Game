@@ -472,7 +472,7 @@ def run():
     menu1.pack(side='top', padx=10)
     menu2.pack(side='top', padx=10)
     menu3.pack(side='top', padx=10)
-    menu4.pack(side='top', padx=20)
+    menu4.pack(side='top', padx=10)
     menu5.pack(side='top', padx=20)
     menu.mainloop()
 
