@@ -21,7 +21,7 @@ con.commit()
 con.close()
 
 ## necessary variables
-ind = np.arange(len(data))                # the x locations for the groups
+ind = np.arange(len(data))                # the x locations for the groups         #using numpy arange here
 width = 0.35                      # the width of the bars
 
 ## the bars
