@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt    #matplotlib library used
 import sqlite3    #importing sqlLite3
 
 fig = plt.figure()
-ax = fig.add_subplot(111)
+ax = fig.add_subplot(111)     #for plotting the graph
 
 con = sqlite3.connect('player_info.db')
 cur = con.cursor()
