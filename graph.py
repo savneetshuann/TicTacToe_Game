@@ -35,8 +35,8 @@ ax.set_xlim(-width,len(ind)+width)
 ax.set_ylim(0,45)                                        #setting the x and y coordinates
 
 
-ax.set_ylabel('POINTS')
-ax.set_xlabel('NAMES')
+ax.set_ylabel('POINTS')          #for points
+ax.set_xlabel('NAMES')            #for names
 ax.set_title('TOP RATED PLAYERS (RANK WISE )')
 
 ax.set_xticks(ind+width)
