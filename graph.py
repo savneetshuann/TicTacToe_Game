@@ -1,6 +1,6 @@
 import numpy as np    #using numpy lib
 import matplotlib.pyplot as plt    #matplotlib library used
-import sqlite3
+import sqlite3    #importing sqlLite3
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
