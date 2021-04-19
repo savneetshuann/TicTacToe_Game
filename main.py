@@ -212,7 +212,7 @@ def get_value_pc(i, j, gb, l1, l2):
         print(count)
         if count == 0:
             print("in insert")
-            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?, 1,0,10)", (user_name,))
+            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?,1,0,10)", (user_name,))
         else:
             print("in update")
             c.execute("""UPDATE players SET no_of_wins = no_of_wins + 1  WHERE user_name = 
@@ -227,6 +227,21 @@ def get_value_pc(i, j, gb, l1, l2):
         gb.destroy()
         x = False
         messagebox.showinfo("Winner", "Computer won the match")
+        conn = sqlite3.connect('player_info.db')
+        c = conn.cursor()
+        c.execute("SELECT * FROM players WHERE user_name =? ", (user_name,))
+        count = int(len(c.fetchall()))
+        print(count)
+        if count == 0:
+            print("in insert")
+            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?,0,1,10)", (user_name,))
+        else:
+            print("in update")
+            c.execute("""UPDATE players SET no_of_loss = no_of_loss + 1  WHERE user_name = 
+                            ?""", (user_name,))
+
+        conn.commit()
+        conn.close()
 
     elif isfull():
         gb.destroy()
