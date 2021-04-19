@@ -303,6 +303,8 @@ def with_player(game_board, user_name1, user_name2):
 # gameboard for single player
 def open_single():
     game_board = Tk()
+    game_board.title("Tic Tac Toe")
+    game_board.iconbitmap('Tic_tac_toe.ico')
     wpc = partial(with_machine, game_board)
     user_name_label = Label(game_board, text="Enter your username: ")
     user_name_label.grid(row=0, column=0)
@@ -331,6 +333,8 @@ def connection():
 # menu method for multi player plays
 def open_multiple(menu):
     top = Tk()
+    top.title("Tic Tac Toe")
+    top.iconbitmap('Tic_tac_toe.ico')
     user_name_label1 = Label(top, text="Enter username for Player1: ")
     user_name_label1.grid(row=0, column=0)
     user_name1 = Entry(top, width=30)  # user1 from here need to insert in database
