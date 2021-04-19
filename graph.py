@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt    #matplotlib library used
 import sqlite3
 
 fig = plt.figure()
