@@ -438,10 +438,10 @@ def run():
     img = ImageTk.PhotoImage(resized)
 
 
-    # reading the image
+
     panel = tkinter.Label(menu, image=img)
 
-    # setting the application
+
     panel.pack(side="top",padx=20)
 
     head = Label(menu, text="Welcome to Tic-Tac-Toe",
