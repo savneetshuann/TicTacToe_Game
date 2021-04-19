@@ -81,7 +81,7 @@ def get_value(i, j, gb, l1, l2):
         conn.commit()
         conn.close()
 
-
+ #winner board for player 2 winning the game
     elif winner(board, "O"):
         gb.destroy()
         messagebox.showinfo("Winner", "Player 2 won the match")
@@ -160,7 +160,7 @@ def machine():
     else:
         for let in ['O', 'X']:
             for i in possiblemove:
-                boardcopy = deepcopy(board)
+                boardcopy = deepcopy(board)        #using deepcopy
                 boardcopy[i[0]][i[1]] = let
                 if winner(boardcopy, let):
                     return i
