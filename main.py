@@ -487,7 +487,7 @@ def run():
     head.pack(side='top')
     panel.pack(side="top", padx=10)
     menu1.pack(side='top', padx=10)        
-    menu2.pack(side='top', padx=10)
+    menu2.pack(side='top', padx=10)       #PAcking menus
     menu3.pack(side='top', padx=10)
     menu4.pack(side='top', padx=10)
     menu5.pack(side='top', padx=10)
