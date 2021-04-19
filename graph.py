@@ -6,7 +6,7 @@ fig = plt.figure()
 ax = fig.add_subplot(111)     #for plotting the graph
 
 con = sqlite3.connect('player_info.db')
-cur = con.cursor()
+cur = con.cursor()                           #cursor
 cur.execute(
         'SELECT * FROM(SELECT user_name,points, RANK() OVER (ORDER BY points DESC) PRANK FROM players) WHERE '
         'PRANK <=3')
