@@ -307,7 +307,7 @@ def open_single():
     user_name_label = Label(game_board, text="Enter your username: ")
     user_name_label.grid(row=0, column=0)
     user_name = Entry(game_board, width=30)
-    user_name.grid(row=1, column=0, padx=20)
+    user_name.grid(row=1, column=0, padx=10)
     submit_btn = Button(game_board, text="Play", command=lambda: wpc(user_name), activeforeground='white',
                         activebackground="grey", bg="blue", fg="white", font='Gabriola', width=7)
     submit_btn.grid(row=2, column=0, pady=10, padx=10)
