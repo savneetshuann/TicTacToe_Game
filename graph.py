@@ -32,7 +32,7 @@ rects1 = ax.bar(ind, data, width,
 
 # axes and labels
 ax.set_xlim(-width,len(ind)+width)
-ax.set_ylim(0,45)
+ax.set_ylim(0,45)                                        #setting the x and y coordinates
 
 
 ax.set_ylabel('POINTS')
