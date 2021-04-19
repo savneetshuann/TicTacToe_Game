@@ -433,19 +433,19 @@ def run():
                    width=500, font='Gabriola', bd=5)
 
     menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=scoreboard, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu4 = Button(menu, text="Top Players", command=top_play, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu5 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     head.pack(side='top')
