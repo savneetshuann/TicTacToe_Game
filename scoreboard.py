@@ -7,7 +7,7 @@ def View():  # Method to View the data into the Scoreboard Table
     con1 = sqlite3.connect('player_info.db')
     cur1 = con1.cursor()
     cur1.execute("Select user_name,no_of_wins,points from players")
-    rows = cur1.fetchall()
+    rows = cur1.fetchall()        #cursor to fetch
 
     for row in rows:
         print(row)
