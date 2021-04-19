@@ -309,7 +309,7 @@ def open_single():
     user_name = Entry(game_board, width=30)
     user_name.grid(row=1, column=0, padx=20)
     submit_btn = Button(game_board, text="Play", command=lambda: wpc(user_name), activeforeground='white',
-                        activebackground="grey", bg="blue", fg="white", font='Gabriola',width=8)
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola', width=8)
     submit_btn.grid(row=2, column=0, pady=10, padx=10)
     game_board.mainloop()
 
@@ -342,7 +342,7 @@ def open_multiple(menu):
     user_name2.grid(row=3, column=0, padx=20)
     wpl = partial(with_player, top)
     submit_btn = Button(top, text="Play", command=lambda: wpl(user_name1, user_name2), activeforeground='white',
-                        activebackground="grey", bg="blue", fg="white", font='Gabriola',width=8)
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola', width=8)
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
@@ -432,17 +432,14 @@ def run():
     menu.title("Tic Tac Toe")
 
     # loading the image
-    image=PIL.Image.open("Tic_tac_toe.png")
-    #image = image.resize((450, 350), Image.ANTIALIAS)
-    resized = image.resize((300, 300),PIL.Image.ANTIALIAS)
+    image = PIL.Image.open("Tic_tac_toe.png")
+    # image = image.resize((450, 350), Image.ANTIALIAS)
+    resized = image.resize((300, 300), PIL.Image.ANTIALIAS)
     img = ImageTk.PhotoImage(resized)
-
-
 
     panel = tkinter.Label(menu, image=img)
 
-
-    panel.pack(side="top",padx=20)
+    panel.pack(side="top", padx=20)
 
     head = Label(menu, text="Welcome to Tic-Tac-Toe",
                  activeforeground='white',
@@ -469,13 +466,13 @@ def run():
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
-    head.pack(side='top',padx=20)
-    panel.pack(side="top",padx=20)
-    menu1.pack(side='top',padx=20)
-    menu2.pack(side='top',padx=20)
-    menu3.pack(side='top',padx=20)
-    menu4.pack(side='top',padx=20)
-    menu5.pack(side='top',padx=20)
+    head.pack(side='top', padx=20)
+    panel.pack(side="top", padx=20)
+    menu1.pack(side='top', padx=20)
+    menu2.pack(side='top', padx=20)
+    menu3.pack(side='top', padx=20)
+    menu4.pack(side='top', padx=20)
+    menu5.pack(side='top', padx=20)
     menu.mainloop()
 
 
