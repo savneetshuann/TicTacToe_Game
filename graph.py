@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as np    #using numpy lib
 import matplotlib.pyplot as plt    #matplotlib library used
 import sqlite3
 
