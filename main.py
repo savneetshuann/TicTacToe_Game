@@ -234,7 +234,7 @@ def get_value_pc(i, j, gb, l1, l2):
         print(count)
         if count == 0:
             print("in insert")
-            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?,0,1,10)", (user_name,))
+            c.execute("insert INTO players(user_name,no_of_wins,no_of_loss,points) VALUES(?,0,1,0)", (user_name,))
         else:
             print("in update")
             c.execute("""UPDATE players SET no_of_loss = no_of_loss + 1  WHERE user_name = 
