@@ -1,4 +1,9 @@
 # Tic Tac Toe game
+
+import tkinter
+from PIL import ImageTk, Image
+import PIL.Image
+import os
 import numpy as np  # using numpy library
 import random
 import tkinter as tk  # using tkinter library for GUI
@@ -11,6 +16,8 @@ from tkinter import messagebox
 from copy import deepcopy  # for recursive copying
 
 # sign variable to decide the turn of which player
+from PIL import ImageTk
+
 sign = 0
 
 # Creates an empty board
@@ -137,7 +144,6 @@ def gameboard_players(game_board, l1, l2):
         for j in range(3):
             if board[i][j] != ' ':
                 board[i][j] = ' '
-                print("in if cond")
             print(board)
             n = j
             button[i].append(j)
@@ -278,9 +284,6 @@ def with_player(game_board, user_name1, user_name2):
     username2 = user_name2.get()
     print(username1)
     print(username2)
-    # second click
-    print(board)
-    # empty values of board
 
     game_board.destroy()
     game_board = Tk()
@@ -306,7 +309,7 @@ def open_single():
     user_name = Entry(game_board, width=30)
     user_name.grid(row=1, column=0, padx=20)
     submit_btn = Button(game_board, text="Play", command=lambda: wpc(user_name), activeforeground='white',
-                        activebackground="grey", bg="blue", fg="white", font='Gabriola')
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola',width=8)
     submit_btn.grid(row=2, column=0, pady=10, padx=10)
     game_board.mainloop()
 
@@ -330,7 +333,7 @@ def open_multiple(menu):
     top = Tk()
     user_name_label1 = Label(top, text="Enter username for Player1: ")
     user_name_label1.grid(row=0, column=0)
-    user_name1 = Entry(top, width=30)  # user1 from here need to insert in databse
+    user_name1 = Entry(top, width=30)  # user1 from here need to insert in database
     user_name1.grid(row=1, column=0, padx=20)
 
     user_name_label2 = Label(top, text="Enter username for Player2: ")
@@ -339,7 +342,7 @@ def open_multiple(menu):
     user_name2.grid(row=3, column=0, padx=20)
     wpl = partial(with_player, top)
     submit_btn = Button(top, text="Play", command=lambda: wpl(user_name1, user_name2), activeforeground='white',
-                        activebackground="grey", bg="blue", fg="white", font='Gabriola')
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola',width=8)
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
@@ -425,16 +428,29 @@ def scoreboard():
 # creating the GUI for the game
 def run():
     menu = Tk()
-    menu.geometry("400x400")
+    menu.geometry("700x700")
     menu.title("Tic Tac Toe")
 
-    head = Label(menu, text="Welcome to tic-tac-toe",
+    # loading the image
+    image=PIL.Image.open("Tic_tac_toe.png")
+    #image = image.resize((450, 350), Image.ANTIALIAS)
+    resized = image.resize((300, 300),PIL.Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(resized)
+
+
+    # reading the image
+    panel = tkinter.Label(menu, image=img)
+
+    # setting the application
+    panel.pack(side="top",padx=20)
+
+    head = Label(menu, text="Welcome to Tic-Tac-Toe",
                  activeforeground='white',
                  activebackground="black", bg="white",
                  fg="black", width=500, font='Modern', bd=5)
 
     menu1 = Button(menu, text="Single Player", command=open_single, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
@@ -453,12 +469,13 @@ def run():
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
-    head.pack(side='top')
-    menu1.pack(side='top')
-    menu2.pack(side='top')
-    menu3.pack(side='top')  # To pack the menus in the Tkinter
-    menu4.pack(side='top')
-    menu5.pack(side='top')
+    head.pack(side='top',padx=20)
+    panel.pack(side="top",padx=20)
+    menu1.pack(side='top',padx=20)
+    menu2.pack(side='top',padx=20)
+    menu3.pack(side='top',padx=20)
+    menu4.pack(side='top',padx=20)
+    menu5.pack(side='top',padx=20)
     menu.mainloop()
 
 
