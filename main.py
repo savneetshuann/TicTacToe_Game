@@ -430,6 +430,7 @@ def run():
     menu = Tk()
     menu.geometry("700x700")
     menu.title("Tic Tac Toe")
+    menu.iconbitmap('Tic_tac_toe.ico')
 
     # loading the image
     image = PIL.Image.open("Tic_tac_toe.png")
