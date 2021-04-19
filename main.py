@@ -1,5 +1,5 @@
 # Tic Tac Toe game
-#Github Project Link: https://github.com/savneetshuann/TicTacToe_Game
+# Github Project Link: https://github.com/savneetshuann/TicTacToe_Game
 import tkinter
 from PIL import ImageTk, Image
 import PIL.Image
@@ -16,8 +16,6 @@ from tkinter import messagebox
 from copy import deepcopy  # for recursive copying
 
 # sign variable to decide the turn of which player
-from PIL import ImageTk
-
 sign = 0
 
 # Creates an empty board
