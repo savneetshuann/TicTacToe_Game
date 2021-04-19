@@ -428,7 +428,7 @@ def scoreboard():
 # creating the GUI for the game
 def run():
     menu = Tk()
-    menu.geometry("700x700")
+    menu.geometry("650x650")
     menu.title("Tic Tac Toe")
     menu.iconbitmap('Tic_tac_toe.ico')
 
