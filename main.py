@@ -467,7 +467,7 @@ def run():
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
-    head.pack(side='top', padx=10)
+    head.pack(side='top')
     panel.pack(side="top", padx=10)
     menu1.pack(side='top', padx=10)
     menu2.pack(side='top', padx=20)
