@@ -1,6 +1,6 @@
 # Tic Tac Toe game
 # Github Project Link: https://github.com/savneetshuann/TicTacToe_Game
-import tkinter
+import tkinter                     #using TKinter LIb
 from PIL import ImageTk, Image
 import PIL.Image
 import os
@@ -486,7 +486,7 @@ def run():
 
     head.pack(side='top')
     panel.pack(side="top", padx=10)
-    menu1.pack(side='top', padx=10)
+    menu1.pack(side='top', padx=10)        
     menu2.pack(side='top', padx=10)
     menu3.pack(side='top', padx=10)
     menu4.pack(side='top', padx=10)
