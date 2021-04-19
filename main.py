@@ -342,7 +342,7 @@ def open_multiple(menu):
     user_name2.grid(row=3, column=0, padx=20)
     wpl = partial(with_player, top)
     submit_btn = Button(top, text="Play", command=lambda: wpl(user_name1, user_name2), activeforeground='white',
-                        activebackground="grey", bg="blue", fg="white", font='Gabriola', width=8)
+                        activebackground="grey", bg="blue", fg="white", font='Gabriola', width=7)
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
