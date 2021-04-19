@@ -334,12 +334,12 @@ def open_multiple(menu):
     user_name_label1 = Label(top, text="Enter username for Player1: ")
     user_name_label1.grid(row=0, column=0)
     user_name1 = Entry(top, width=30)  # user1 from here need to insert in database
-    user_name1.grid(row=1, column=0, padx=20)
+    user_name1.grid(row=1, column=0, padx=10)
 
     user_name_label2 = Label(top, text="Enter username for Player2: ")
     user_name_label2.grid(row=2, column=0)
     user_name2 = Entry(top, width=30)
-    user_name2.grid(row=3, column=0, padx=20)
+    user_name2.grid(row=3, column=0, padx=10)
     wpl = partial(with_player, top)
     submit_btn = Button(top, text="Play", command=lambda: wpl(user_name1, user_name2), activeforeground='white',
                         activebackground="grey", bg="blue", fg="white", font='Gabriola', width=7)
