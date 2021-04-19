@@ -435,7 +435,7 @@ def run():
     # loading the image
     image = PIL.Image.open("Tic_tac_toe.png")
     # image = image.resize((450, 350), Image.ANTIALIAS)
-    resized = image.resize((300, 300), PIL.Image.ANTIALIAS)
+    resized = image.resize((200, 200), PIL.Image.ANTIALIAS)
     img = ImageTk.PhotoImage(resized)
 
     panel = tkinter.Label(menu, image=img)
