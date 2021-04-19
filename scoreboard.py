@@ -1,5 +1,5 @@
 from tkinter import ttk  # we use ttk for more advance styles and tree frame in scoreboard
-import tkinter as tk
+import tkinter as tk   #we used tkinter
 import sqlite3
 
 
