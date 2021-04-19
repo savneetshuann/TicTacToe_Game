@@ -81,7 +81,7 @@ def get_value(i, j, gb, l1, l2):
         conn.commit()
         conn.close()
 
-
+ #winner board for player 2 winning the game
     elif winner(board, "O"):
         gb.destroy()
         messagebox.showinfo("Winner", "Player 2 won the match")
@@ -161,7 +161,7 @@ def machine():
     else:
         for let in ['O', 'X']:
             for i in possiblemove:
-                boardcopy = deepcopy(board)
+                boardcopy = deepcopy(board)        #using deepcopy
                 boardcopy[i[0]][i[1]] = let
                 if winner(boardcopy, let):
                     return i
@@ -438,19 +438,19 @@ def run():
                    width=500, font='Gabriola', bd=5)
 
     menu2 = Button(menu, text="Multi Player", command=lambda: open_multiple(menu), activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu3 = Button(menu, text="Scoreboard", command=scoreboard, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu4 = Button(menu, text="Top Players", command=top_play, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     menu5 = Button(menu, text="Exit", command=menu.quit, activeforeground='white',
-                   activebackground="grey", bg="blue", fg="red",
+                   activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
     head.pack(side='top')  # To pack the menus in the Tkinter
