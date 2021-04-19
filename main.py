@@ -81,7 +81,7 @@ def get_value(i, j, gb, l1, l2):
         conn.commit()
         conn.close()
 
- #winner board for player 2 winning the game
+    # winner board for player 2 winning the game
     elif winner(board, "O"):
         gb.destroy()
         messagebox.showinfo("Winner", "Player 2 won the match")
@@ -161,7 +161,7 @@ def machine():
     else:
         for let in ['O', 'X']:
             for i in possiblemove:
-                boardcopy = deepcopy(board)        #using deepcopy
+                boardcopy = deepcopy(board)  # using deepcopy
                 boardcopy[i[0]][i[1]] = let
                 if winner(boardcopy, let):
                     return i
@@ -453,10 +453,10 @@ def run():
                    activebackground="grey", bg="blue", fg="white",
                    width=500, font='Gabriola', bd=5)
 
-    head.pack(side='top')  # To pack the menus in the Tkinter
+    head.pack(side='top')
     menu1.pack(side='top')
     menu2.pack(side='top')
-    menu3.pack(side='top')
+    menu3.pack(side='top')  # To pack the menus in the Tkinter
     menu4.pack(side='top')
     menu5.pack(side='top')
     menu.mainloop()
