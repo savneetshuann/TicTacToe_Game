@@ -17,10 +17,10 @@ from copy import deepcopy  # for recursive copying
 
 # sign variable to decide the turn of which player
 sign = 0
-
+#
 # Creates an empty board
 global board
-
+#it creates global variable
 board = [[" " for x in range(3)] for y in range(3)]  # empty board
 
 
