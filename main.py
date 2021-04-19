@@ -1,14 +1,14 @@
 # Tic Tac Toe game
-import numpy as np                #using numpy library
-import random                   
-import tkinter as tk              #using tkinter library for GUI
+import numpy as np  # using numpy library
+import random
+import tkinter as tk  # using tkinter library for GUI
 from tkinter import *
 import sqlite3
-from tkinter import ttk           #using tkinter library for  tkinter tree table
-import matplotlib.pyplot as plt   #using matplotlib for plotting of graph
-from functools import partial     #importing partial function
-from tkinter import messagebox    
-from copy import deepcopy         #for recursive copying
+from tkinter import ttk  # using tkinter library for  tkinter tree table
+import matplotlib.pyplot as plt  # using matplotlib for plotting of graph
+from functools import partial  # importing partial function
+from tkinter import messagebox
+from copy import deepcopy  # for recursive copying
 
 # sign variable to decide the turn of which player
 sign = 0
@@ -16,7 +16,7 @@ sign = 0
 # Creates an empty board
 global board
 
-board = [[" " for x in range(3)] for y in range(3)]                #empty board
+board = [[" " for x in range(3)] for y in range(3)]  # empty board
 
 
 # Check l(O/X) won the match or not
@@ -81,7 +81,7 @@ def get_value(i, j, gb, l1, l2):
         conn.commit()
         conn.close()
 
- #winner board for player 2 winning the game
+    # winner board for player 2 winning the game
     elif winner(board, "O"):
         gb.destroy()
         messagebox.showinfo("Winner", "Player 2 won the match")
@@ -147,7 +147,8 @@ def gameboard_players(game_board, l1, l2):
             button[i][j].grid(row=m, column=n)
     game_board.mainloop()
 
-#machine logic for tictactoe
+
+# machine logic for tictactoe
 def machine():
     possiblemove = []
     for i in range(len(board)):
@@ -160,7 +161,7 @@ def machine():
     else:
         for let in ['O', 'X']:
             for i in possiblemove:
-                boardcopy = deepcopy(board)        #using deepcopy
+                boardcopy = deepcopy(board)  # using deepcopy
                 boardcopy[i[0]][i[1]] = let
                 if winner(boardcopy, let):
                     return i
@@ -295,7 +296,8 @@ def with_player(game_board, user_name1, user_name2):
 
     # clear text box
 
-#gameboard for single player
+
+# gameboard for single player
 def open_single():
     game_board = Tk()
     wpc = partial(with_machine, game_board)
@@ -322,7 +324,8 @@ def connection():
     conn.commit()
     conn.close()
 
-#menu method for multi player plays
+
+# menu method for multi player plays
 def open_multiple(menu):
     top = Tk()
     user_name_label1 = Label(top, text="Enter username for Player1: ")
@@ -340,7 +343,8 @@ def open_multiple(menu):
     submit_btn.grid(row=4, column=0, pady=10, padx=10)
     top.mainloop()
 
-#top ranked players bar graph
+
+# top ranked players bar graph
 def top_play():
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -382,7 +386,8 @@ def top_play():
 
     plt.show()
 
-#method for scoreboard
+
+# method for scoreboard
 def scoreboard():
     def View():  # Method to View the data into the Scoreboard Table
         con1 = sqlite3.connect('player_info.db')
@@ -451,10 +456,11 @@ def run():
     head.pack(side='top')
     menu1.pack(side='top')
     menu2.pack(side='top')
-    menu3.pack(side='top')
+    menu3.pack(side='top')  # To pack the menus in the Tkinter
     menu4.pack(side='top')
     menu5.pack(side='top')
     menu.mainloop()
+
 
 # table creation
 connection()
